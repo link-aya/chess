@@ -15,15 +15,6 @@ body{
     background-color: #2c293f;
 }
 
-a{
-  color: #ded7ff;
-  text-decoration: none;
-}
-
-a:hover{
-  text-decoration: underline;
-}
-
 .container{
     color: #fff;
     background-color: #454066;
@@ -59,6 +50,15 @@ button{
     font-size: 0.9rem;
     cursor: pointer;
     transition: all 0.3s ease;
+}
+
+a{
+  color: #ded7ff;
+  text-decoration: none;
+}
+
+a:hover{
+  text-decoration: underline;
 }
 
 .move-history{
