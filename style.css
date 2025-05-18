@@ -1,0 +1,79 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body{
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #2c293f;
+}
+
+.container{
+    color: #fff;
+    background-color: #454066;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+h1{
+    text-align: center;
+    font-weight: 500;
+}
+
+.board{
+    width: 400px;
+    margin: 20px auto;
+}
+
+.buttons{
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+button{
+    color: #fff;
+    background-color: transparent;
+    border: solid 0.5px #fff;
+    width: 150px;
+    height: 40px;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.move-history{
+    color: black;
+    margin-top: 20px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+    height: 100px;
+    width: 400px;
+    overflow-y: scroll;
+    background-color: #dad8e9;
+    margin-left: 12%;
+}
+
+:root{
+  --white-square: #f0d9b5;
+  --black-square: #b58863;
+}
+
+.white-1e1d7 {
+  background-color: var(--white-square) !important;
+}
+
+.black-3c85d {
+  background-color: var(--black-square) !important;
+}
