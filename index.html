@@ -1,35 +1,31 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="css/chessboard-1.0.0.min.css">
-  <link rel="shortcut icon" href="logo-transparent.png">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=screen_rotation_up" />
-  <title>Chess Zone</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/chessboard-1.0.0.min.css">
+    <title>Chess Game</title>
 </head>
+
 <body>
 
-  <div class="container">
-    <h1>Chess Zone - Joue & Amuses-toi </h1>
-    <div class="board" id="board"></div>
-
-    <div class="buttons">
-      <button class="play-again">Rejouer</button>
-      <button class="change-theme">Changer thème 🖌️</button>
-      <button class="flip-board"><span class="material-symbols-outlined">screen_rotation_up</span></button>
+    <div class="container">
+        <h1>Jeux d'échecs | Amuse-toi !</h1>
+        <div class="board" id="board"></div>
+        <div class="buttons">
+            <button class="play-again">Rejouer</button>
+            <button class="flip-board">Retrouner l'échiquier</button>
+        </div>
+        <div id="move-history" class="move-history"></div>
     </div>
 
-    <div class="move-history" id="move-history"></div>
 
-  </div>
-
-
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-  <script src="js/chessboard-1.0.0.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.10.3/chess.min.js"></script>
-  <script src="script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="js/chessboard-1.0.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.10.3/chess.min.js"></script>
+    <script src="script.js"></script>
 </body>
+
 </html>
