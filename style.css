@@ -17,10 +17,6 @@ body{
     background-color: #2c293f;
 }
 
-.board {
-  touch-action: none;
-}
-
 .container{
     color: #fff;
     background-color: #454066;
@@ -91,37 +87,5 @@ a:hover{
 
 .black-3c85d {
   background-color: var(--black-square) !important;
-}
 
-@media screen and (max-width: 500px) {
-    .container {
-        padding: 1rem;
-        border-radius: 8px;
-        width: 90%;
-    }
 
-    .board {
-        width: 100%;
-        margin: 10px auto;
-    }
-
-    .buttons {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    button {
-        width: 100%;
-        max-width: 250px;
-    }
-
-    .move-history {
-        width: 100%;
-        margin-left: 0;
-        height: 120px;
-    }
-
-    h1 {
-        font-size: 1.4rem;
-    }
-}
