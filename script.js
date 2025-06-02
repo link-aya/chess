@@ -1,4 +1,3 @@
-const moveSound = new Audio('public_sound_Silence.mp3')
 
 // Wait for the DOM to be fully loaded before executing code
 document.addEventListener('DOMContentLoaded', () => {
