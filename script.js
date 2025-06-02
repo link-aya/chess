@@ -1,4 +1,3 @@
-
 // Wait for the DOM to be fully loaded before executing code
 document.addEventListener('DOMContentLoaded', () => {
     let board = null; // Initialize the chessboard
@@ -6,6 +5,32 @@ document.addEventListener('DOMContentLoaded', () => {
     const moveHistory = document.getElementById('move-history'); // Get move history container
     let moveCount = 1; // Initialize the move count
     let userColor = 'w'; // Initialize the user's color as white
+
+    // 🔧 PATCH TACTILE MOBILE
+    const simulateMouseEvent = (event, simulatedType) => {
+        if (event.touches.length > 1) return;
+
+        const touch = event.changedTouches[0];
+        const simulatedEvent = new MouseEvent(simulatedType, {
+            bubbles: true,
+            cancelable: true,
+            view: window,
+            clientX: touch.clientX,
+            clientY: touch.clientY,
+        });
+
+        touch.target.dispatchEvent(simulatedEvent);
+        event.preventDefault();
+    };
+
+    const enableTouchSupport = () => {
+        const boardElement = document.getElementById('board');
+        boardElement.addEventListener('touchstart', e => simulateMouseEvent(e, 'mousedown'), true);
+        boardElement.addEventListener('touchmove', e => simulateMouseEvent(e, 'mousemove'), true);
+        boardElement.addEventListener('touchend', e => simulateMouseEvent(e, 'mouseup'), true);
+    };
+
+    enableTouchSupport(); // Active la compatibilité tactile
 
     // Function to make a random move for the computer
     const makeRandomMove = () => {
@@ -18,8 +43,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const move = possibleMoves[randomIdx];
             game.move(move);
             board.position(game.fen());
-            recordMove(move, moveCount); // Record and display the move with move count
-            moveCount++; // Increament the move count
+            recordMove(move, moveCount);
+            moveCount++;
         }
     };
 
@@ -27,16 +52,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const recordMove = (move, count) => {
         const formattedMove = count % 2 === 1 ? `${Math.ceil(count / 2)}. ${move}` : `${move} -`;
         moveHistory.textContent += formattedMove + ' ';
-        moveHistory.scrollTop = moveHistory.scrollHeight; // Auto-scroll to the latest move
+        moveHistory.scrollTop = moveHistory.scrollHeight;
     };
 
-    // Function to handle the start of a drag position
     const onDragStart = (source, piece) => {
-        // Allow the user to drag only their own pieces based on color
         return !game.game_over() && piece.search(userColor) === 0;
     };
 
-    // Function to handle a piece drop on the board
     const onDrop = (source, target) => {
         const move = game.move({
             from: source,
@@ -48,21 +70,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (move.flags.includes('c')) {
             moveSound.play();
-        }else{
+        } else {
             moveSound.play();
         }
 
         window.setTimeout(makeRandomMove, 250);
-        recordMove(move.san, moveCount); // Record and display the move with move count
+        recordMove(move.san, moveCount);
         moveCount++;
     };
 
-    // Function to handle the end of a piece snap animation
     const onSnapEnd = () => {
         board.position(game.fen());
     };
 
-    // Configuration options for the chessboard
     const boardConfig = {
         showNotation: true,
         draggable: true,
@@ -76,10 +96,8 @@ document.addEventListener('DOMContentLoaded', () => {
         appearSpeed: 200,
     };
 
-    // Initialize the chessboard
     board = Chessboard('board', boardConfig);
 
-    // Event listener for the "Play Again" button
     document.querySelector('.play-again').addEventListener('click', () => {
         game.reset();
         board.start();
@@ -88,14 +106,11 @@ document.addEventListener('DOMContentLoaded', () => {
         userColor = 'w';
     });
 
-    // Event listener for the "Flip Board" button
     document.querySelector('.flip-board').addEventListener('click', () => {
         board.flip();
-        // Toggle user's color after flipping the board
         userColor = userColor === 'w' ? 'b' : 'w';
     });
 
-    // Event listener for the "Change-theme" button
     document.querySelector('.change-theme').addEventListener('click', () => {
         document.documentElement.style.setProperty('--white-square', '#ffe4e1');
         document.documentElement.style.setProperty('--black-square', '#6b5b95');
