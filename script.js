@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const possibleMoves = game.moves();
 
         if (game.game_over()) {
-            alert("Échec et mat!");
+            alert("Checkmate!");
         } else {
             const randomIdx = Math.floor(Math.random() * possibleMoves.length);
             const move = possibleMoves[randomIdx];
@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Function to record and display a move in the move history
     const recordMove = (move, count) => {
-        const formattedMove = count % 2 === 1 ? ${Math.ceil(count / 2)}. ${move} : ${move} -;
+        const formattedMove = count % 2 === 1 ? `${Math.ceil(count / 2)}. ${move}` : `${move} -`;
         moveHistory.textContent += formattedMove + ' ';
         moveHistory.scrollTop = moveHistory.scrollHeight; // Auto-scroll to the latest move
     };
@@ -45,12 +45,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (move === null) return 'snapback';
 
-        if (move.flags.includes('c')) {
-            moveSound.play();
-        }else{
-            moveSound.play();
-        }
-
         window.setTimeout(makeRandomMove, 250);
         recordMove(move.san, moveCount); // Record and display the move with move count
         moveCount++;
@@ -69,10 +63,9 @@ document.addEventListener('DOMContentLoaded', () => {
         onDragStart,
         onDrop,
         onSnapEnd,
-        moveSpeed: 300,
-        snapBackSpeed: 200,
-        snapSpeed: 150,
-        appearSpeed: 200,
+        moveSpeed: 'fast',
+        snapBackSpeed: 500,
+        snapSpeed: 100,
     };
 
     // Initialize the chessboard
@@ -87,16 +80,27 @@ document.addEventListener('DOMContentLoaded', () => {
         userColor = 'w';
     });
 
+    // Event listener for the "Set Position" button
+    document.querySelector('.set-pos').addEventListener('click', () => {
+        const fen = prompt("Enter the FEN notation for the desired position!");
+        if (fen !== null) {
+            if (game.load(fen)) {
+                board.position(fen);
+                moveHistory.textContent = '';
+                moveCount = 1;
+                userColor = 'w';
+            } else {
+                alert("Invalid FEN notation. Please try again.");
+            }
+        }
+    });
+
     // Event listener for the "Flip Board" button
     document.querySelector('.flip-board').addEventListener('click', () => {
         board.flip();
+        makeRandomMove();
         // Toggle user's color after flipping the board
         userColor = userColor === 'w' ? 'b' : 'w';
     });
 
-    // Event listener for the "Change-theme" button
-    document.querySelector('.change-theme').addEventListener('click', () => {
-        document.documentElement.style.setProperty('--white-square', '#ffe4e1');
-        document.documentElement.style.setProperty('--black-square', '#6b5b95');
-    });
 });
