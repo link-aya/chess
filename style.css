@@ -17,6 +17,10 @@ body{
     background-color: #2c293f;
 }
 
+.board {
+  touch-action: none;
+}
+
 .container{
     color: #fff;
     background-color: #454066;
