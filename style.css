@@ -12,11 +12,12 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #f2f2f2;
+    background-color: #2c293f;
 }
 
 .container{
-    background-color: #fff;
+    color: #fff;
+    background-color: #454066;
     padding: 2rem;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
@@ -41,8 +42,8 @@ h1{
 
 button{
     color: #fff;
-    background-color: #000;
-    border: none;
+    background-color: transparent;
+    border: solid 0.5px #fff;
     width: 120px;
     height: 40px;
     border-radius: 6px;
@@ -51,11 +52,17 @@ button{
     transition: all 0.3s ease;
 }
 
-button:hover{
-    background-color: #434343;
+a{
+  color: #ded7ff;
+  text-decoration: none;
+}
+
+a:hover{
+  text-decoration: underline;
 }
 
 .move-history{
+    color: black;
     margin-top: 20px;
     border: 1px solid #ccc;
     padding: 10px;
@@ -63,5 +70,6 @@ button:hover{
     height: 100px;
     width: 400px;
     overflow-y: scroll;
-    background-color: #f2f2f2;
+    background-color: #dad8e9;
+    margin-left: 12%;
 }
